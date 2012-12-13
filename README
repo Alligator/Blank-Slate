@@ -34,7 +34,7 @@ Documentation
 
     Slate.startLoop(callback)
       Start a draw loop with the callback as a draw function. Will use
-      requestAnimationFrame if available, or a 30fps setInterval if not.
+      requestAnimationFrame if available, or a 30fps setTimeout if not.
       callback -> A callback function that will be called each draw two two
                    arguments, the canvas context and the frame time.
 

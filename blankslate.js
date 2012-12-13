@@ -18,7 +18,10 @@ function Slate(elementId, width, height) {
   var requestAnimationFrame = window.requestAnimationFrame ||
                               window.webkitRequestAnimationFrame ||
                               window.mozRequestAnimationFrame ||
-                              window.msRequestAnimationFrame;
+                              window.msRequestAnimationFrame ||
+                              function (cb) {
+                                window.setTimeout(cb, 1000 / 60);
+                              };
   window.requestAnimationFrame = requestAnimationFrame;
 
   var looping = true;
