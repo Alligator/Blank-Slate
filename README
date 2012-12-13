@@ -1,0 +1,66 @@
+Blank Slate
+
+  Gonna be a blank slate,
+  Gonna wear a white cape
+
+  Blank slate is a tiny wrapper around the html5 canvas, just to cut down on the
+  boilerplate in my own personal projects. It doesn't do anything fancy, it's
+  just to save me time and effort.
+
+  If you find this useful too that's cool.
+
+
+Documentation
+
+  Slate(element, width, height)
+    Create a new Slate wrapper around element.
+    element -> An html element object or a string representing a canvas's ID
+    width   -> The desired width of the canvas
+    height  -> The desired height of the canvas
+
+    If width or height are undenfined, the canvas is set to 100% of it's
+    parent container
+
+  Methods
+
+    Slate.do(callback)
+      Do something with the canvas.
+      callback -> A callback function that will be called with one argument,
+                   the canvas content
+
+    Slate.makeFullSize()
+      Makes the canvas the full size of the window, assuming you have no other
+      elements to get in the way.
+
+    Slate.startLoop(callback)
+      Start a draw loop with the callback as a draw function. Will use
+      requestAnimationFrame if available, or a 30fps setInterval if not.
+      callback -> A callback function that will be called each draw two two
+                   arguments, the canvas context and the frame time.
+
+    Slate.stopLoop()
+      Stops the current draw loop.
+
+    The follow are some utility methods included to make my life easier.
+
+    Slate.hsla(h, s, l, a)
+      Return the hsla string for h, s, l, a. Specified in floats from 0 to 1.
+
+    Slate rgba(r, g, b, a)
+      Return the rgba string for r, g, b, a.
+
+  Attributes
+
+    Slate.canvas -> The canvas HTML element.
+    Slate.ctx    -> The canvas context.
+
+Example
+
+  var s = new Slate('canvas').makeFullsize();
+
+  var offset = 0;
+  s.startLoop(function(ctx, time) {
+    ctx.fillStyle = s.hsla(offset * 360, 1.0, 0.5, 1.0);
+    ctx.fillRect(0, 0, 20, 20);
+    offset = (offset + 0.01) % 1.0;
+  });
